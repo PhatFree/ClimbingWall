@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/about',function (req, res) {
     stats_dal.aboutStats(function (err, stats) {
-        res.render('about', {title: 'CWDb:About', stats: stats[0]});
+        res.render('about', {title: 'CWDb: About', stats: stats[0]});
     });
  });
 

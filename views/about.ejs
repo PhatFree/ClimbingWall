@@ -2,11 +2,26 @@
 
     <h1><%= title %></h1>
     <p>Welcome to the Climbing Wall Database</p>
-    <p> This database is designed to keep track of climbing gyms, routes and climbers.</p>
-    <p> Currently this website is currently keeps track of <%=stats.gym_count%> Gyms</p>
-
-
-
-    <br />
+    <p>This database is designed to keep track of climbing gyms, routes and climbers.</p>
+<p>This website currently keeps track of :</br>
+    <%=stats.gym_count%> Gyms, with <%=stats.wall_count%> walls, and on those walls there are <%=stats.routes%> routes.</br>
+    <%=stats.climbers%> Climbers, who have climbed a combined <%=stats.routes_climbed%> times.</p>
+<br/>
+<a href="https://github.com/phatfree">  This Website was built by Jeffrey Booher-Kaeding
+</a>
+<a href="mailto:jeff@kaeding.com"> <br/>Contact at Jeff@Kaeding.io</a>
+<br/>
+<br/>
+<a href="/images/ER.png">
+    Click to Enlarge: <br/>
+    <img src="/images/ER.png" alt="ER" style="width:389px;height:325px;">
+</a>
+<br/>
+<a href="/images/RS.png">
+    Click to Enlarge: <br/>
+    <img  src="/images/RS.png" alt="RS" style="width:333px;height:180px;">
+</a>
+<br />
+<br />
 <a href="/"><< back</a>
 <%- include("./includes/footer.ejs"); %>
