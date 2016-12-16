@@ -1,0 +1,20 @@
+<%- include("../includes/header.ejs", {title:"Edit " + result.name}); %>
+<h1>Update <%= result.name%></h1>
+<form action="/gym/update" method="get">
+    <input type="hidden" id="GYM_ID" name="GYM_ID" value="<%= result.GYM_ID %>">
+    Gym Name:       <input id="name" name="name" type="text" value="<%=result.name%>"/>
+    <br/>
+    Street Number:  <input id="street_num" name="street_num" type="text" value="<%=result.street_num%>"/>
+    <br/>
+    Street Name:    <input id="street_name" name="street_name" type="text" value="<%=result.street_name%>"/>
+    <br/>
+    Zipcode:        <input id="zip" name="zip" type="text" value="<%=result.zip%>"/>
+    <br/>
+    State:          <input id="state" name="state" type="text" value="<%=result.state%>"/>
+    <br/>
+    <input type="submit" />
+
+</form>
+
+<a href="/gym/all"><< back</a>
+<%- include("../includes/footer.ejs"); %>

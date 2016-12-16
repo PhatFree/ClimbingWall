@@ -1,0 +1,20 @@
+<%- include("../includes/header.ejs", {title:"Add New Gym"}); %>
+<h1>Add New Gym</h1>
+<form action="/gym/insert" method="get">
+    Gym Name: <input id="name" name="name" type="text" />
+    <br/>
+    Street Number: <input id="street_num" name="street_num" type="text"/>
+    <br/>
+    Street Name: <input id="street_name" name="steet_name" type="text"/>
+    <br/>
+    Zipcode: <input id="zip" name="zip" type="text"/>
+    <br/>
+    State: <input id="state" name="state" type="text"/>
+    <br/>
+    <input type="submit" />
+
+</form>
+<a href="/gym/all"><< back</a>
+
+
+<%- include("../includes/footer.ejs"); %>

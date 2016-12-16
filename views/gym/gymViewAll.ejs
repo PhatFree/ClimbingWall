@@ -1,0 +1,27 @@
+<%- include("../includes/header.ejs", {title: title}); %>
+
+<h1><%=title%></h1>
+        <a href="/gym/add">Add New Gym</a> <br />
+
+        <br />
+
+        <table border="1">
+            <tr><th>Name</th><th>Address</th><th>Actions</th></tr>
+            <% for(var i=0; result.length > i; i++ ) { %>
+            <tr>
+                <td><a href="/gym/?GYM_ID=<%= result[i].GYM_ID %>"><%= result[i].name %></a></td>
+                <td>  <%= result[i].street_num %>, <%= result[i].street_name %>,<%= result[i].zip%>, <%= result[i].state%> </td>
+                <td>
+                    <button onclick="event.preventDefault();window.location.href='/gym/edit2/?GYM_ID=<%= result[i].GYM_ID %>'">Edit</button>
+
+                    <form action="/gym/delete/" style="display:inline;">
+                        <input type="hidden" name="GYM_ID" id="GYM_ID" value="<%= result[i].GYM_ID %>" />
+                        <input type="submit" value="Delete"/>
+                    </form>
+
+                </td>
+            </tr>
+            <% } %>
+        </table>
+        <a href="/"><< back</a>
+        <%- include("../includes/footer.ejs"); %>

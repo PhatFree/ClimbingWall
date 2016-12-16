@@ -1,0 +1,14 @@
+<%- include("../includes/header.ejs", {title:"Gym - " + result.name}); %>
+<h1>Gym: <%= result.name%></h1>
+<ul>
+    <li>Name: <%= result.name %></li>
+    <li>Address:<%=result.street_num%>, <%= result.street_name %>, <%= result.zip %><%= result.state %></li>
+    <li>Max Height: <%=result.max_height%></li>
+    <li>Numer of Walls:<%=result.num_walls%></li>
+    <li>Number of Routes:<%=result.num_routes%></li>
+</ul>
+
+
+<a href="/gym/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

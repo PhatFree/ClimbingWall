@@ -42,7 +42,7 @@ exports.insert = function(params, callback) {
 };
 
 exports.delete = function(GYM_ID, callback) {
-    var query = 'DELETE FROM gym WHERE GYM_ID = ?';
+    var query = 'DELETE FROM Gym WHERE GYM_ID = ?';
     var queryData = [GYM_ID];
 
     connection.query(query, queryData, function(err, result) {
