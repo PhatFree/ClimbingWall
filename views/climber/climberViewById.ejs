@@ -1,0 +1,12 @@
+<%- include("../includes/header.ejs", {title:"Climbers - " + result[0].email}); %>
+
+<h1>Climber</h1>
+    <ul>
+        <li>Climber Email: <%= result.email %></li>
+        <li>First Name: <%= result.first %></li>
+        <li>Last Name: <%= result.last %></li>
+    </ul>
+
+    <a href="/climber/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

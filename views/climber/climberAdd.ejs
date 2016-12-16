@@ -1,0 +1,16 @@
+<%- include("../includes/header.ejs", {title:"Add New Climber"}); %>
+    <h1>Add New Climber</h1>
+    <form action="/climber/insert" method="get">
+        Climber Email: <input id="email" name="email" type="text" />
+        <br/>
+        First Name: <input id="first" name="first" type="text"/>
+        <br/>
+        Last Name: <input id="last" name="last" type="text"/>
+        <br/>
+        <input type="submit" />
+
+    </form>
+<a href="/climber/all"><< back</a>
+
+
+<%- include("../includes/footer.ejs"); %>

@@ -1,0 +1,26 @@
+<%- include("../includes/header.ejs", {title:"Climber - View All"}); %>
+<h1>Climbers</h1>
+<a href="/climber/add">Add New Climber</a>
+
+<br/>
+
+<table border="1">
+    <tr><th>email</th><th>First name</th><th>Last name</th><th>Actions</th></tr>
+    <% for(var i=0; result.length > i; i++ ) { %>
+    <tr>
+        <td><a href="/climber/?CLIMB_ID=<%= result[i].CLIMB_ID %>"><%= result[i].email %></a></td>
+        <td><%= result[i].first %></td>
+        <td><%= result[i].last %></td>
+        <td>
+            <button onclick="event.preventDefault();window.location.href='edit/?CLIMB_ID=<%= result[i].CLIMB_ID %>'">Edit</button>
+            <form action="/climber/delete" style="display:inline;">
+                <input type="hidden" name="CLIMB_ID" id="CLIMB_ID" value="<%=result[i].CLIMB_ID%>"/>
+                <input type="submit" value="Delete"/>
+            </form>
+        </td>
+    </tr>
+    <% } %>
+</table>
+<a href="/"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

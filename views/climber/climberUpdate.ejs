@@ -1,0 +1,19 @@
+<%- include("../includes/header.ejs", {title:"Update" + result.email}); %>
+
+<h1>Update <%= result.email%></h1>
+<form action="/climber/update" method="get">
+    <input type="hidden" id="CLIMB_ID" name="CLIMB_ID" value="<%= result.CLIMB_ID %>">
+    Climber email: <input id="email" name="email" type="text" value="<%= result.email %>"/>
+    <br />
+    First Name: <input id="first" name="first" type="text" value="<%= result.first %>"/>
+    <br />
+    Last Name: <input id="last" name="last" type="text" value="<%= result.last %>"/>
+    <br />
+
+    <input type="submit" />
+
+</form>
+<a href="/climber/all"><< back</a>
+
+
+<%- include("../includes/footer.ejs"); %>
