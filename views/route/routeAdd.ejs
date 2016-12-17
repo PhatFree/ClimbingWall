@@ -1,0 +1,23 @@
+<%- include("../includes/header.ejs", {title:"Add a new route"}); %>
+<h1>Add New School</h1>
+<form action="/route/insert" method="get">
+    Route Name: <input id="name" name="name" type="text" />
+    <br />
+    Color: <input id="primary_color" name="primary_color" type="text">
+
+    <br />
+    Wall and Gym
+    <select id="WALL_ID" name="WALL_ID">
+        <% for(var i=0; result.length > i; i++ ) { %>
+        <option value="<%= result[i].WALL_ID %>">
+            <%= result[i].name+ ', Wall number:' + result[i].wall_numb %></option>
+        <% } %>
+    </select>
+    <br />
+    <input type="submit" />
+
+</form>
+<a href="/route/all"><< back</a>
+
+
+<%- include("../includes/footer.ejs"); %>
