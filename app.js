@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var gym = require('./routes/gym_routes');
 var climber = require('./routes/climber_routes');
+var route = require('./routes/route_routes');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index);
 app.use('/gym', gym);
 app.use('/climber', climber);
+app.use('/route', route);
 
 
 app.use(express.static('public'));

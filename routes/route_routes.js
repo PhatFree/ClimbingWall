@@ -17,7 +17,7 @@ router.get('/all', function(req, res) {
 
 });
 
-// View the school for the given id
+// View the route for the given id
 router.get('/', function(req, res){
     if(req.query.ROUTE_ID == null) {
         res.send('ROUTE_ID is null');
@@ -35,7 +35,7 @@ router.get('/', function(req, res){
 });
 
 
-// Return the add a new school form
+// Return the add a new routeform
 router.get('/add', function(req, res){
     // passing all the query parameters (req.query) to the insert function instead of each individually
     wall_dal.getAll(function(err,result) {

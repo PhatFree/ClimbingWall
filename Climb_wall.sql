@@ -42,7 +42,7 @@ CREATE TABLE Wall
   WALL_ID INT auto_increment,
   GYM_ID INT NOT NULL,
   PRIMARY KEY (WALL_ID),
-  FOREIGN KEY (GYM_ID) REFERENCES Gym(GYM_ID)
+  FOREIGN KEY (GYM_ID) REFERENCES Gym(GYM_ID) on delete cascade
 );
 
 
@@ -133,14 +133,15 @@ insert into Difficulty(diff_id,v_number,five_point)# estimated litieral difficul
     
 insert into Gym(name,street_num,street_name,state,zip)
   values
-    ('Planet Granite','100','El Camino Real','CA','94002'),
-    ('Evo Rock & Fitness','65','Warren Ave','ME','04103'),
-    ('VERTEX climbing center','3358','Coffey Ln A', 'CA','95403'),
-    ('The Sudio Climbing','396','1st St','CA','95113'),
-    ('Rock City Climbing','5100','E La Palma Ave #108','CA','92807'),
+    ('Planet LimeStone','100','El Camino Real','CA','94002'),
+    ('Revo Rock Fitness','65','Warren Ave','ME','04103'),
+    ('VERTREX center','3358','Coffey Ln A', 'CA','95403'),
+    ('The Film Sudio Climbing','396','1st St','CA','95113'),
+    ('Rocky City Climbing','5100','E La Palma Ave #108','CA','92807'),
 	('Campus Recreation Climbing Wall: Sonoma State University','1801','E Cotati Ave','CA','94928');
     
 	Select * from Gym;
+   
     
 insert into Wall(GYM_ID,wall_numb,style,height)
   values #THESE VALUES ARE NOT ACCURATE, this is just dummy data
@@ -160,7 +161,7 @@ insert into Wall(GYM_ID,wall_numb,style,height)
 	(4,3,'boulder',10),
 	(4,2,'crack',50),
 	(5,1,'boulder',25),
-	(6,2,'overhang',35),
+	(6,1,'overhang',35),
 	(6,2,'highwall',60);
   
 	select * from Wall;
@@ -174,7 +175,7 @@ insert into Climber(email,first,last)
 
 	select * from Climber;
         
-insert into Route(primary_color,secondary_color,date_set,date_cleared,name,is_boulder,is_lead,is_top_rope,WALL_ID)
+insert into Route(primary_color,date_set,date_cleared,name,is_boulder,is_lead,is_top_rope,WALL_ID)
   values
 	('red','2015-10-05','2015-11-20','This is only a test',true,false,false,1),
 	('blue','2016-09-05',null,'IM BLUE',false,false,true,1),
@@ -352,7 +353,7 @@ insert into Climbed(CLIMB_ID,ROUTE_ID,attempts_to_complete,completed,difficulty_
  -- START QUREY WRITTING
  
  #ALL BOULDER ROUTES UP BY GYM #7
- select g.name as Gym_name, wall_numb, r.name as Route_name, v_number, primary_color, secondary_color, style
+ select g.name as Gym_name, wall_numb, r.name as Route_name, v_number, primary_color, style
  from Gym g
  join Wall w on w.GYM_ID = g.GYM_ID
  join Route r on r.WALL_ID = w.WALL_ID
@@ -451,3 +452,39 @@ select aporx_feet_climbed(email) from Climber;
 DELIMITER ;
     
     CALL climbers_at_gym('Planet Granite');
+    
+    
+
+create or replace view db_stats as
+select (select count(*) from Gym) as gym_count,
+	(select count(*) from Wall) as wall_count, 
+    (select count(*) from Route) as routes,
+    (select sum(attempts_to_complete) from Climbed) as routes_climbed,
+    (select count(*) from Climber) as climbers,
+    (select avg(difficulty_adjust) from Climbed) as global_difficulty;
+    
+    select * from db_stats;
+    
+create or replace view gym_view as select g.*, count(distinct w.WALL_ID) as num_walls, max(height) as max_height, count(ROUTE_ID) as num_routes
+from Route r right join Wall w on w.WALL_ID = r.WALL_ID right join Gym g on g.GYM_ID = w.GYM_ID group by GYM_ID; 
+
+select * from gym_view;
+
+
+DROP PROCEDURE IF EXISTS gym_getinfo;
+
+     DELIMITER //
+     CREATE PROCEDURE gym_getinfo (_GYM_ID int)
+     BEGIN
+     SELECT  * FROM gym_view WHERE GYM_ID = _GYM_ID;
+
+     END //
+     DELIMITER ;
+
+     # Call the Stored Procedure
+     CALL gym_getinfo (1);
+     
+#UPDATE Gym SET name = 'PLanet Limestone', street_num = '1', street_name = 'El camino', zip = 94002, state = 'CA' WHERE GYM_ID = 1
+
+
+select * from Climber;

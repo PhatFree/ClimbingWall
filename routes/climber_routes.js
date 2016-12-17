@@ -46,7 +46,7 @@ router.get('/insert', function(req, res){
     if(req.query.email == null) {
         res.send('Email must be provided.');
     }
-    else if(req.query.firstme == null) {
+    else if(req.query.first == null) {
         res.send('First Name must be provided');
     }
     else if(req.query.last == null) {
@@ -100,7 +100,7 @@ router.get('/delete', function(req, res){
             }
             else {
                 //poor practice, but we will handle it differently once we start using Ajax
-                res.redirect(302, '/climb/all');
+                res.redirect(302, '/climber/all');
             }
         });
     }

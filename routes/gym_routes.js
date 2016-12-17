@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var gym_dal = require('../model/gym_dal');
-var address_dal = require('../model/address_dal');
 
 
 // View All Gyms
@@ -20,7 +19,8 @@ router.get('/all', function(req, res) {
 
 // View the Gym for the given id
 router.get('/', function(req, res){
-    if(req.query.GYM_ID == null) {
+    console.log(req.query);
+        if(req.query.GYM_ID == null) {
         res.send('GYM_ID is null');
     }
     else {
@@ -44,10 +44,12 @@ router.get('/add', function(req, res){
 // View the gym for the given id
 router.get('/insert', function(req, res){
     // simple validation
+    console.log(req.query);
+
     if(req.query.name == null) {
         res.send('Name must be provided.');
     }
-    else if(req.query.street_num == null) {
+    else if(req.query.street_name == null) {
         res.send('An Address must be selected');
     }
     else if(req.query.street_name == null) {
@@ -63,7 +65,7 @@ router.get('/insert', function(req, res){
         // passing all the query parameters (req.query) to the insert function instead of each individually
         gym_dal.insert(req.query, function(err,result) {
             if (err) {
-                console.log(err)
+                console.log(err);
                 res.send(err);
             }
             else {
