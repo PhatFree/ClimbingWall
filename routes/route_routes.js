@@ -98,8 +98,7 @@ router.get('/delete', function(req, res){
         res.send('ROUTE_ID is null');
     }
     else {
-        route_dal.delete(req.query.ROUTE_ID, function(err){
-            console.log(req.query);
+        route_dal.delete(req.query.ROUTE_ID, function(err, result){
             if(err) {
                 res.send(err);
             }

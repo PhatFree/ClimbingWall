@@ -25,7 +25,7 @@
                 </td>
                 <td><a href="/gym/?GYM_ID=<%= result[i].GYM_ID %>"><%= result[i].gym_name %></a></td>
                 <td>
-                    <form action="route/delete" style="display: inline">
+                    <form action="/route/delete/" style="display: inline">
                         <input type="hidden" name="ROUTE_ID" id="ROUTE_ID" value="<%=result[i].ROUTE_ID%>"/>
                         <input type="submit" value="Delete"/>
                     </form>
