@@ -5,18 +5,35 @@
         <br/>
 
         <table border="1">
-            <tr><th>Route Name</th><th>height</th><th>style</th><th>Gym Name</th><th>Action</th></tr>
+            <tr><th>Route Name</th><th>height</th><th>style</th><th>Date set & cleared off wall</th><th>Gym Name</th><th>Action</th></tr>
             <% for(var i=0; result.length > i; i++ ) { %>
             <tr>
                 <td><a href="/route/?ROUTE_ID=<%= result[i].ROUTE_ID %>">  <%= result[i].gym_name %>: <%= result[i].route_name %> </a> </td>
                 <td><%= result[i].height %></td>
                 <td><%= result[i].style %></td>
+                <td><li><%= result[i].date_set%></li>
+
+                <li>
+                    <% if(result[i].date_cleared){%>
+                    <%=result[i].date_cleared%>
+                    <%}%>
+                    <% if(!result[i].date_cleared) {%>
+                    Route Is up
+
+                    <%}%>
+                </li>
+                </td>
                 <td><a href="/gym/?GYM_ID=<%= result[i].GYM_ID %>"><%= result[i].gym_name %></a></td>
                 <td>
-                    <form action="/route/delete">
+                    <form action="route/delete" style="display: inline">
                         <input type="hidden" name="ROUTE_ID" id="ROUTE_ID" value="<%=result[i].ROUTE_ID%>"/>
-                        <input type="submit" value="Cleared"/>
+                        <input type="submit" value="Delete"/>
                     </form>
+                    <%if(!result[i].date_cleared){%>
+                    <form action="/route/clear" style="display:inline">
+                        <input type="hidden" name="ROUTE_ID" id="ROUTE_ID" value="<%=result[i].ROUTE_ID%>"/>
+                        <input type="submit" value="Set as Cleared"/>
+                    </form><%}%>
                 </td>
             </tr>
             <% } %>

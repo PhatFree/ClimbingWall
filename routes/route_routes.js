@@ -75,12 +75,13 @@ router.get('/insert', function(req, res){
 });
 
 // Delete a route for the given ROUTE_ID
-router.get('/delete', function(req, res){
+router.get('/clear', function(req, res){
     if(req.query.ROUTE_ID == null) {
         res.send('ROUTE_ID is null');
     }
     else {
-        route_dal.delete(req.query.ROUTE_ID, function(err){
+        route_dal.clear(req.query.ROUTE_ID, function(err){
+            console.log(req.query);
             if(err) {
                 res.send(err);
             }
@@ -91,5 +92,24 @@ router.get('/delete', function(req, res){
         });
     }
 });
+
+router.get('/delete', function(req, res){
+    if(req.query.ROUTE_ID == null) {
+        res.send('ROUTE_ID is null');
+    }
+    else {
+        route_dal.delete(req.query.ROUTE_ID, function(err){
+            console.log(req.query);
+            if(err) {
+                res.send(err);
+            }
+            else {
+                //poor practice, but we will handle it differently once we start using Ajax
+                res.redirect(302, '/route/all');
+            }
+        });
+    }
+});
+
 
 module.exports = router;
