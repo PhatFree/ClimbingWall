@@ -28,7 +28,8 @@ router.get('/', function(req, res){
                res.send(err);
            }
            else {
-               res.render('route/routeViewById', {'result': result});
+               console.log(result);
+               res.render('route/routeViewById', {'result': result[0]});
            }
         });
     }

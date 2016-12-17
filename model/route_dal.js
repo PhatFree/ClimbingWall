@@ -32,7 +32,7 @@ exports.insert = function(params, callback) {
     connection.query(query, queryData, function(err, result) {
         var ROUTE_ID = result.insrtIc;
 
-        var query = 'INSERT INTO Diff_is (ROUTE_ID, Diff_ID) values ?'
+        var query = 'INSERT INTO Diff_is (ROUTE_ID, Diff_ID) values ?';
 
         connection.query(query, params.D)
 
@@ -63,7 +63,7 @@ exports.edit = function(ROUTE_ID, callback) {
 
 
 exports.delete = function(ROUTE_ID, callback) {
-    var query = 'DELETE FROM Route WHERE ROUTE_ID = ?';
+    var query = 'Update route set date cleared = current_date';
     var queryData = [ROUTE_ID];
 
     connection.query(query, queryData, function (err, result) {

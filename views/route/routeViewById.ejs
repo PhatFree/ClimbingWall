@@ -1,0 +1,17 @@
+<%- include("../includes/header.ejs", {title:"Route - " + result.street}); %>
+    <h1>Route</h1>
+    <ul>
+        <li>Name: <%= result.route_name %></li>
+        <li>Color: <%= result.primary_color %></li>
+        <li> Date Set: <%= result.date_set %></li>
+        <li> Date Cleared: <%= result.date_cleared %></li>
+        <li> Heco Scale: <%= result.v_number %></li>
+        <li> Yosemite Scale: <%= result.five_point %></li>
+        <li> Height: <%= result.height %></li>
+        <li> Style: <%= result.style %></li>
+        <li> Gym name: <a href="/gym/?GYM_ID=<%= result.GYM_ID %>"><%= result.gym_name %></a></li>
+    </ul>
+
+<a href="/route/all"><< back</a>
+
+<%- include("../includes/footer.ejs"); %>

@@ -2,5 +2,5 @@ exports.config = {
     user: '',
     password: '',
     host: '',
-    database: ''
+    database: 'booherkj_proj1'
 };
